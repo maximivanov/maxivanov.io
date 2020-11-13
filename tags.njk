@@ -1,0 +1,19 @@
+---
+permalink: /tags/
+layout: layouts/base.njk
+---
+{% set headerContent %}
+  <h1>All tags</h1>
+{% endset %}
+{% include "page-header.njk" %}
+
+
+<div class="layout-width-limiter layout-row">
+  <div class="layout-col-1"></div>
+  <div class="layout-col-2 tags-page__tag-list">
+    {% for tag in collections.tagList | sort %}
+      {% set tagUrl %}/tags/{{ tag }}/{% endset %}
+      <p><a href="{{ tagUrl | url }}" class="post-tag">{{ tag }}</a></p>
+    {% endfor %}
+  </div>
+</div>

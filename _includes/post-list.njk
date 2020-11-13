@@ -1,0 +1,32 @@
+{% for post in posts | reverse %}
+  {% set year = post.date | getYear %}
+  {%- if year != prevYear -%}
+    <div class="layout-row posts-year-row">
+      <div class="layout-col-1">
+        <h2>{{ year }}</h2>
+      </div>
+      <div class="layout-col-2"></div>
+    </div>
+  {%- endif -%}
+
+  <div class="layout-row posts__post-row">
+    <div class="layout-col-1">
+      <time class="posts__post-row-date" datetime="{{ post.date | htmlDateString }}">{{ post.date | monthAndDay }}</time>
+    </div>
+    <div class="layout-col-2">
+      <a href="{{ post.url | url }}" class="posts__post-row-title">{% if post.data.title %}{{ post.data.title }}{% else %}<code>{{ post.url }}</code>{% endif %}</a>
+      <p class="posts__post-row-description">{{ post.data.description }}</p>
+      <div>
+        {% for tag in post.data.tags %}
+          {%- if collections.tagList.indexOf(tag) != -1 -%}
+          {% set tagUrl %}/tags/{{ tag }}/{% endset %}
+          <a href="{{ tagUrl | url }}" class="post-tag">{{ tag }}</a>
+          {%- endif -%}
+        {% endfor %}
+      </div>
+
+    </div>
+  </div>
+
+  {% set prevYear = year %}
+{% endfor %}

@@ -1,0 +1,12 @@
+---
+layout: layouts/base.njk
+---
+{% set headerContent %}
+  <h1>Archive</h1>
+{% endset %}
+{% include "page-header.njk" %}
+
+<div class="layout-width-limiter">
+  {% set posts = collections.posts %}
+  {% include "post-list.njk" %}
+</div>
