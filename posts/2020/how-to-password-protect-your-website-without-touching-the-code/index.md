@@ -3,8 +3,10 @@ title: 'How to password-protect your website with Cloudflare'
 description: Use Cloudflare Workers to add password protection on top of a website or API.
 date: 2020-11-16
 tags:
-  - cloudflare
-  - security
+  - Cloudflare
+  - Cloudflare Workers
+  - Security
+  - Authentication
 ---
 
 **TLDR:** If your DNS provider is Cloudflare, you can use its Workers feature to add password protection on top of the existing website or API. You don't need to make any changes to the web server configuration or application code. You can enable password protection either manually via Cloudflare dashboard or define it as Infrastructure-as-Code with Wrangler.

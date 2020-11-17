@@ -3,8 +3,9 @@ title: "redis-faina: what's happening to my Redis server?"
 description: This is literally the first blog post I published back in 2012.
 date: 2012-08-08
 tags:
-  - redis
-  - performance
+  - Redis
+  - Performance
+  - Monitoring
 ---
 
 _Edit 2020: I'm not sure this is even relevant anymore, looks like project's Github is dead. This is here for history purposes._

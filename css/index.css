@@ -1,4 +1,5 @@
 @import url('https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@400;600&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap');
 
 :root {
   --red: #b1365b;
@@ -68,6 +69,7 @@ h3 {
 
 :not(pre) > code {
   padding: 0.25rem;
+  font-size: 0.9rem;
 }
 
 pre[class*='language-'] {
@@ -303,13 +305,6 @@ pre[class*='language-'] {
 
 .post-page-body {
   line-height: 1.7em;
-  font-size: 0.9rem;
-}
-
-@media only screen and (min-width: 1024px) {
-  .post-page-body {
-    font-size: 1rem;
-  }
 }
 
 .post-page-body h2,
@@ -320,6 +315,7 @@ pre[class*='language-'] {
 
 .post-page-body p {
   margin-bottom: 1.5rem;
+  font-family: 'Roboto', sans-serif;
 }
 
 .post-page-body ul {
@@ -327,12 +323,14 @@ pre[class*='language-'] {
   list-style-position: inside;
   margin-bottom: 1.5rem;
   margin-left: 1.5rem;
+  font-family: 'Roboto', sans-serif;
 }
 .post-page-body ol {
   list-style-type: decimal;
   list-style-position: inside;
   margin-bottom: 1.5rem;
   margin-left: 1.5rem;
+  font-family: 'Roboto', sans-serif;
 }
 .post-page-body ul ul,
 .post-page-body ol ul {
