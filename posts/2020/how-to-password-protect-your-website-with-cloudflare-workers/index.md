@@ -1,5 +1,5 @@
 ---
-title: 'How to password-protect your website with Cloudflare'
+title: 'How to password-protect your website with Cloudflare Workers'
 description: Use Cloudflare Workers to add password protection on top of a website or API.
 date: 2020-11-16
 tags:
@@ -45,7 +45,7 @@ Prerequisites:
 
 We will deploy a Cloudflare Worker which will guard the resources by checking if visitors are authenticated. If not they will be prompted with a standard browser password input modal.
 
-![request-flow](/posts/2020/how-to-password-protect-your-website-without-touching-the-code/request-flow.jpg)
+![request-flow](/posts/2020/how-to-password-protect-your-website-with-cloudflare-workers/request-flow.jpg)
 
 ### Worker code
 
