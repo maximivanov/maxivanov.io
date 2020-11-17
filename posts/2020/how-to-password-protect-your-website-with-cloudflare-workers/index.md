@@ -17,7 +17,8 @@ Sometimes you don't want your website to be open to public. Consider these use c
 
 - Restricting access to the staging version of the project you're working on for a client.
 - Having a web app accessible over the Internet that only you should have access to.
-- Throwing a quick API protection layer.
+- Throwing a very basic API protection layer.
+- Sharing a file online with limited audience.
 
 Adding a [HTTP Basic Authentication](https://developer.mozilla.org/en-US/docs/Web/HTTP/Authentication) is a quick way to enable password protection on a page. But that implies making changes to the configuration and/or code on your server. Either the web server or the application must respond appropriately to unauthenticated requests.
 
