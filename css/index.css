@@ -55,7 +55,18 @@ h2 {
   }
 }
 
-code {
+h3 {
+  font-size: 1.15rem;
+  font-weight: 600;
+}
+
+@media only screen and (min-width: 1024px) {
+  h3 {
+    font-size: 1.35rem;
+  }
+}
+
+:not(pre) > code {
   padding: 0.25rem;
 }
 
@@ -207,7 +218,9 @@ pre[class*='language-'] {
 /* Pages */
 
 .page-header {
-  height: calc(5rem + 5vw);
+  /* height: calc(5rem + 5vw); */
+  padding-top: calc(1rem + 3vw);
+  padding-bottom: calc(1rem + 3vw);
   display: flex;
   justify-content: center;
 }
@@ -257,7 +270,7 @@ pre[class*='language-'] {
 /* Post page */
 
 .post-page-title {
-  margin-bottom: 1rem;
+  margin-bottom: 1.5rem;
 }
 
 .post-page-description {
@@ -299,9 +312,10 @@ pre[class*='language-'] {
   }
 }
 
-.post-page-body h2 {
+.post-page-body h2,
+.post-page-body h3 {
   padding-top: 1rem;
-  margin-bottom: 1rem;
+  margin-bottom: 1.5rem;
 }
 
 .post-page-body p {
@@ -312,23 +326,25 @@ pre[class*='language-'] {
   list-style-type: disc;
   list-style-position: inside;
   margin-bottom: 1.5rem;
+  margin-left: 1.5rem;
 }
 .post-page-body ol {
   list-style-type: decimal;
   list-style-position: inside;
   margin-bottom: 1.5rem;
+  margin-left: 1.5rem;
 }
 .post-page-body ul ul,
 .post-page-body ol ul {
   list-style-type: circle;
   list-style-position: inside;
-  margin-left: 15px;
+  margin-left: 1.5rem;
 }
 .post-page-body ol ol,
 .post-page-body ul ol {
   list-style-type: lower-latin;
   list-style-position: inside;
-  margin-left: 15px;
+  margin-left: 1.5rem;
 }
 
 /* Post list */

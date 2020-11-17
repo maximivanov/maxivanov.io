@@ -5,7 +5,6 @@ date: 2012-08-08
 tags:
   - redis
   - performance
-layout: layouts/post.njk
 ---
 
 _Edit 2020: I'm not sure this is even relevant anymore, looks like project's Github is dead. This is here for history purposes._
