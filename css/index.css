@@ -235,6 +235,10 @@ pre[class*='language-'] {
 
 /* About */
 
+.about-page-col-1 p {
+  margin-bottom: 1.5rem;
+}
+
 .about-page-contacts {
   display: flex;
   background-color: var(--lightgray);
