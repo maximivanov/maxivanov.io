@@ -309,6 +309,8 @@ pre[class*='language-'] {
 
 .post-page-body {
   line-height: 1.7em;
+  overflow-wrap: break-word;
+  word-wrap: break-word;
 }
 
 .post-page-body h2,
