@@ -351,6 +351,12 @@ pre[class*='language-'] {
   margin-left: 1.5rem;
 }
 
+.post-page-follow-me {
+  padding: 1rem;
+  background-color: var(--lightgray);
+  font-style: italic;
+}
+
 /* Post list */
 
 .post-row-sm {

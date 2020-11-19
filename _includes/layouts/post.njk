@@ -13,6 +13,8 @@ layout: layouts/base.njk
   <div class="layout-col-2">
     <div class="post-page-body">
       {{ content | safe }}
+
+      <p class="post-page-follow-me">If you like this type of content you can <a href="https://twitter.com/max_v_i">follow me</a> on Twitter for the latest updates.</p>
     </div>
     <p class="post-page-divider post-page-divider--end">_,.-'~'-.,__,.-'~'-.,__,.-'~'-.,__,.-'~'-.,__,.-'~'-.,_</p>
 
@@ -24,6 +26,8 @@ layout: layouts/base.njk
         {%- endif -%}
       {% endfor %}
     </div>
+
+
 
     {%- set nextPost = collections.posts | getNextCollectionItem(page) %}
     {%- if nextPost %}<p>Next: <a href="{{ nextPost.url | url }}">{{ nextPost.data.title }}</a></p>{% endif %}
