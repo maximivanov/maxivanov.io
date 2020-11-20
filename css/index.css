@@ -10,11 +10,9 @@
   --white: #fff;
   --lavender: #9f90cf;
   --mauve: #e9d8e1;
-  --max-width: 1920px;
+  --max-width-mobile: 768px;
+  --max-width-desktop: 1600px;
   font-size: 16px;
-}
-* {
-  box-sizing: border-box;
 }
 
 html,
@@ -114,10 +112,15 @@ pre[class*='language-'] {
 
 .layout-width-limiter {
   margin: 0 auto;
-  width: 100%;
-  max-width: var(--max-width);
+  max-width: var(--max-width-mobile);
   padding-left: calc(0.75rem + 2vw);
   padding-right: calc(0.75rem + 2vw);
+}
+
+@media only screen and (min-width: 1024px) {
+  .layout-width-limiter {
+    max-width: var(--max-width-desktop);
+  }
 }
 
 .layout-row {
@@ -140,6 +143,8 @@ pre[class*='language-'] {
   .layout-col-2 {
     margin-left: calc(0.75rem + 2vw);
     flex: 2;
+    overflow: auto;
+    /* max-width: 768px; */
   }
 }
 
@@ -246,37 +251,18 @@ pre[class*='language-'] {
   flex-direction: column;
 }
 
-@media only screen and (min-width: 1750px) {
-  .about-page-contacts {
-    flex-direction: row;
-  }
-}
-
 .about-page-contacts-item:not(:last-child) {
   margin-bottom: 0.75em;
-}
-
-@media only screen and (min-width: 1750px) {
-  .about-page-contacts-item:not(:last-child) {
-    margin-bottom: 0;
-  }
-}
-
-.about-page-contacts .inline-divider {
-  display: none;
-}
-
-@media only screen and (min-width: 1750px) {
-  .about-page-contacts .inline-divider {
-    display: inline-block;
-    margin: 0 1em;
-  }
 }
 
 /* Post page */
 
 .post-page-title {
   margin-bottom: 1.5rem;
+}
+
+.post-page-reading-time {
+  margin-bottom: 1rem;
 }
 
 .post-page-description {
