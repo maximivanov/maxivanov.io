@@ -1,7 +1,7 @@
 ---
 title: 'Code and security checks in TypeScript projects with Github Actions'
 description: Run tests and code quality checks on pull requests in Github.
-date: 2020-11-23
+date: 2020-11-24
 tags:
   - Github Actions
   - CI
