@@ -1,5 +1,5 @@
 ---
-title: 'Code and security checks in a TypeScript project with Github Actions'
+title: 'Code and security checks in TypeScript projects with Github Actions'
 description: Run tests and code quality checks on pull requests in Github.
 date: 2020-11-23
 tags:
@@ -44,7 +44,7 @@ Each job would do some useful task (run tests, perform code style check, etc) an
 
 Additionally to checking the changes in the code, PR reviewer will consult the output of the CI server before merging the code.
 
-![successful workflow](/posts/2020/code-and-security-checks-in-a-typescript-project-with-github-actions/workflow-success.png)
+![successful workflow](/posts/2020/code-and-security-checks-in-typescript-projects-with-github-actions/workflow-success.png)
 
 Github Actions is free for public repositories and it has generous free tier for private repos. Details [here](https://docs.github.com/en/free-pro-team@latest/github/setting-up-and-managing-billing-and-payments-on-github/about-billing-for-github-actions).
 
