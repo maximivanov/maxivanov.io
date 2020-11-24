@@ -82,7 +82,6 @@ module.exports = function (eleventyConfig) {
   eleventyConfig.addPassthroughCopy('favicon.ico')
   eleventyConfig.addPassthroughCopy('mstile-150x150.png')
   eleventyConfig.addPassthroughCopy('site.webmanifest')
-  // eleventyConfig.addPassthroughCopy('**/*.jpg')
 
   /* Markdown Overrides */
   let markdownLibrary = markdownIt({
@@ -114,7 +113,7 @@ module.exports = function (eleventyConfig) {
   })
 
   return {
-    templateFormats: ['md', 'njk', 'html', 'liquid', 'jpg'],
+    templateFormats: ['md', 'njk', 'html', 'liquid', 'jpg', 'png'],
 
     // If your site lives in a different subdirectory, change this.
     // Leading or trailing slashes are all normalized away, so don’t worry about those.
