@@ -4,7 +4,7 @@ layout: layouts/base.njk
 <div class="layout-width-limiter layout-row vertical-spacer-top">
   <div class="layout-col-1">
     <h1 class="post-page-title">{{ title }}</h1>
-    <p class="post-page-description">{{ description }}</p>
+    {# <p class="post-page-description">{{ description }}</p> #}
     <p class="post-page-reading-time">Reading time: <span>{{ content | readingTime({speed: 200}) }}</span></p>
     <p class="post-page-date">
       <time datetime="{{ date | htmlDateString }}">{{ date | readableDate }}</time>
