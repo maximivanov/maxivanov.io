@@ -101,7 +101,7 @@ find .terraform
 To make our module reusable, we can define a list of variables (you can think about them as of input arguments) it supports. Later we will reference them within the module. Each variable declaration consists of a name at minimum, but also can specify variable type, description and default value. Let's add 3 variables:
 
 ```hcl
-.terraform/variables.tf
+# .terraform/variables.tf
 
 variable "project" {
   type = string
@@ -124,7 +124,7 @@ variable "location" {
 Terraform will automatically load all `.tf` and `.tfvars` files in the module's directory. Latter is to specify values for module variables defined in the previous step. Alternatively you can pass them as command line arguments or with environment variables.
 
 ```hcl
-.terraform/terraform.tfvars
+# .terraform/terraform.tfvars
 
 project = "azuretf"
 environment = "dev"
@@ -136,7 +136,7 @@ location = "East US"
 You deploy Terraform module to a _provider_. Obvious provider examples are cloud providers like AWS/GCP/Azure but there are many more. You can manage resources and configuration in Digital Ocean, Heroku, Github and Netlfy. See the full list of providers in the [Terraform Registry](https://registry.terraform.io/browse/providers).
 
 ```hcl
-.terraform/main.tf
+# .terraform/main.tf
 
 terraform {
   required_providers {
@@ -172,7 +172,7 @@ resource "[terraform resource type]" "[logical resource name]" {
 You really want to stick to some naming convention, both in Terraform resource names (`resource_group` below) and with cloud resource names (`${var.project}-${var.environment}-resource-group` below). It's so much easier when you can easily and consistently come up with a resource name without guessing or referencing the sources.
 
 ```hcl
-.terraform/main.tf
+# .terraform/main.tf
 
 ...
 
@@ -223,7 +223,7 @@ Couple notes:
 - `LRS` stands for "Locally redundant storage" where your data is replicated within a single region. A more advanced setting here is `ZRS` which is "Zone-redundant storage".
 
 ```hcl
-.terraform/main.tf
+# .terraform/main.tf
 
 ...
 
@@ -243,7 +243,7 @@ You can review and deploy the change right away or you can add all resources fro
 Application Insights is a component of Azure Monitor which allows you to collect metrics and logs from your function app.
 
 ```hcl
-.terraform/main.tf
+# .terraform/main.tf
 
 ...
 
@@ -268,7 +268,7 @@ There are 3 plans available:
 Naming is a bit unfortunate here since the 3rd option has "App Service Plan" in it too. We want to go serverless thus we choose a Consumption App Service Plan. `sku` section below sets it.
 
 ```hcl
-.terraform/main.tf
+# .terraform/main.tf
 
 ...
 
@@ -294,7 +294,7 @@ The final resource we need to create is the function app itself. It references r
 For CORS configuration, check the [cors parameter](https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/function_app#cors) in the resource documentation.
 
 ```hcl
-.terraform/main.tf
+# .terraform/main.tf
 
 ...
 
@@ -320,7 +320,7 @@ We have all the components defined in Terraform now. Once we deploy the module w
 Add output definitions:
 
 ```hcl
-.terraform/outputs.tf
+# .terraform/outputs.tf
 
 output "function_app_name" {
   value = azurerm_function_app.function_app.name

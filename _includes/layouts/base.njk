@@ -8,8 +8,17 @@
     <meta property="og:title" content="{{ title or metadata.title }}">
     <meta property="og:url" content="{{ metadata.url }}{{ page.url }}">
     <meta property="og:description" content="{{ description or metadata.description }}">
-    {% if image %}<meta property="og:image" content="{{ metadata.url }}{{ image }}">{% endif %}
-    {% if tags %}<meta property="og:type" content="article">{% endif %}
+    <meta name="twitter:site" content="@max_v_i">
+    <meta name="twitter:title" content="{{ title or metadata.title }}">
+    <meta name="twitter:description" content="{{ description or metadata.description }}">
+    {% if image %}
+    <meta property="og:image" content="{{ metadata.url }}{{ image }}">
+    <meta name="twitter:image" content="{{ metadata.url }}{{ image }}">
+    <meta name="twitter:card" content="summary_large_image">
+    {% endif %}
+    {% if tags %}
+    <meta property="og:type" content="article">
+    {% endif %}
     <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
     <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
     <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
