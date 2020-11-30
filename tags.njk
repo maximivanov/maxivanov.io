@@ -13,7 +13,7 @@ title: All tags
   <div class="layout-col-1"></div>
   <div class="layout-col-2 tags-page__tag-list">
     {% for tag in collections.tagList | sort %}
-      {% set tagUrl %}/tags/{{ tag }}/{% endset %}
+      {% set tagUrl %}/tags/{{ tag | lower }}/{% endset %}
       <p><a href="{{ tagUrl | url }}" class="post-tag">{{ tag }}</a></p>
     {% endfor %}
   </div>
