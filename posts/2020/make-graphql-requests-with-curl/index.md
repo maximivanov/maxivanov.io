@@ -1,5 +1,5 @@
 ---
-title: Make QraphQL requests from command line with curl
+title: Make GraphQL requests from command line with curl
 description: Example curl requests to make GraphQL queries and mutations.
 date: 2020-11-26
 tags:
