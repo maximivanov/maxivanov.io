@@ -390,7 +390,7 @@ Mode details on this topic in [Code quality and security checks in TS projects w
 I love how quickly you can log in to a cloud provider's UI and create a few resources for some random test.
 But this way of infrastructure management is neither scalable nor reproducible. Unless I know this is a one-time experiment I'd prefer to define the resources with Infrastructure-as-Code. Terraform is my tool of choice for IaC.
 
-To keep the post short (not sure I suceed with this 😅) I won't include the TF template here, you can find it in the starter kit repo. Also [How to deploy Azure Functions with Terraform](https://www.maxivanov.io/deploy-azure-functions-with-terraform/) goes in more detail on the topic.
+To keep the post short (I think I already failed on this 😅) I won't include the TF template here, you can find it in the starter kit repo. Also [How to deploy Azure Functions with Terraform](https://www.maxivanov.io/deploy-azure-functions-with-terraform/) goes in more detail on the topic.
 
 If DevOps and cloud resource management is not your thing, just know it contains definitions of a few resources in the cloud needed to run our GraphQL server:
 
