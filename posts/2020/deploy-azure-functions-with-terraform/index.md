@@ -290,6 +290,7 @@ resource "azurerm_app_service_plan" "app_service_plan" {
 The final resource we need to create is the function app itself. It references resources created earlier: App Service Plan, Application Insights instance and storage account. Version is set to 3, which is the latest version of Azure Functions at the moment.
 
 `app_settings` is a key-value block with configuration options for all of the functions in the Function App. If you need to pass an environment variable to your code, add it here.
+Setting `WEBSITE_RUN_FROM_PACKAGE` to an empty value and ignoring changes in the lifecycle block is there to prevent Terraform reporting on configuration drift after we deploy the function code.
 
 For CORS configuration, check the [cors parameter](https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/function_app#cors) in the resource documentation.
 
@@ -304,12 +305,19 @@ resource "azurerm_function_app" "function_app" {
   location                   = var.location
   app_service_plan_id        = azurerm_app_service_plan.app_service_plan.id
   app_settings = {
+    "WEBSITE_RUN_FROM_PACKAGE"       = "",
     "APPINSIGHTS_INSTRUMENTATIONKEY" = azurerm_application_insights.application_insights.instrumentation_key,
   }
   os_type = "linux"
   storage_account_name       = azurerm_storage_account.storage_account.name
   storage_account_access_key = azurerm_storage_account.storage_account.primary_access_key
   version                    = "~3"
+
+  lifecycle {
+    ignore_changes = [
+      app_settings["WEBSITE_RUN_FROM_PACKAGE"],
+    ]
+  }
 }
 ```
 
