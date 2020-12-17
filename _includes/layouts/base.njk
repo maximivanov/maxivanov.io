@@ -47,6 +47,7 @@ eleventyComputed:
     <link rel="stylesheet" href="{{ '/css/index.css' | url }}">
     <link rel="alternate" href="{{ metadata.feed.path | url }}" type="application/atom+xml" title="{{ metadata.title }}">
     <link rel="alternate" href="{{ metadata.jsonfeed.path | url }}" type="application/json" title="{{ metadata.title }}">
+    {% if isProd %}
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-MP7L71RW6V"></script>
     <script>
       window.dataLayer = window.dataLayer || [];
@@ -54,6 +55,7 @@ eleventyComputed:
       gtag('js', new Date());
       gtag('config', 'G-MP7L71RW6V');
     </script>
+    {% endif %}
   </head>
   <body>
     <header class="bg--1">
