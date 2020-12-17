@@ -5,11 +5,13 @@ const pluginSyntaxHighlight = require('@11ty/eleventy-plugin-syntaxhighlight')
 const markdownIt = require('markdown-it')
 const markdownItAnchor = require('markdown-it-anchor')
 const readingTime = require('eleventy-plugin-reading-time')
+const schema = require('@quasibit/eleventy-plugin-schema')
 
 module.exports = function (eleventyConfig) {
   eleventyConfig.addPlugin(pluginRss)
   eleventyConfig.addPlugin(pluginSyntaxHighlight)
   eleventyConfig.addPlugin(readingTime)
+  eleventyConfig.addPlugin(schema)
 
   eleventyConfig.setDataDeepMerge(true)
 
@@ -28,6 +30,10 @@ module.exports = function (eleventyConfig) {
   // https://html.spec.whatwg.org/multipage/common-microsyntaxes.html#valid-date-string
   eleventyConfig.addFilter('htmlDateString', (dateObj) => {
     return DateTime.fromJSDate(dateObj, { zone: 'utc' }).toFormat('yyyy-LL-dd')
+  })
+
+  eleventyConfig.addFilter('iso8601', (dateObj) => {
+    return DateTime.fromJSDate(dateObj, { zone: 'utc' }).toISO()
   })
 
   // Get the first `n` elements of a collection.

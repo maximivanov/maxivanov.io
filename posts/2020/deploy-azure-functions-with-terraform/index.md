@@ -2,6 +2,7 @@
 title: Deploy Azure Functions with Terraform
 description: A practical, step by step guide on how to deploy an Azure Function with Terraform.
 date: 2020-11-30
+updateDate: 2020-12-16
 image: /posts/2020/deploy-azure-functions-with-terraform/deploy-azure-functions-with-terraform.png
 tags:
   - Azure

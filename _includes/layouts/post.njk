@@ -1,5 +1,12 @@
 ---
 layout: layouts/base.njk
+type: post
+eleventyComputed:
+  meta:
+    author:
+      name: "{{ metadata.author.name }}"
+    published: "{{ date | iso8601 }}"
+    modified: "{% if updateDate %}{{ updateDate | iso8601 }}{% endif %}"
 ---
 <div class="layout-width-limiter layout-row vertical-spacer-top">
   <div class="layout-col-1">

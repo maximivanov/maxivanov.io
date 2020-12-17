@@ -1,9 +1,9 @@
 {
-  "title": "Max Ivanov",
+  "title": "Blog by Max Ivanov",
   "url": "https://www.maxivanov.io",
-  "description": "Personal blog by Max Ivanov. I mostly write about cloud computing and programming.",
+  "description": "Blog by Max Ivanov, Software Engineer / Cloud Architect. I write about Azure, AWS, Serverless, DevOps, fullstack TypeScript, peppered with thoughts on dev life.",
   "feed": {
-    "subtitle": "Personal blog by Max Ivanov. I mostly write about cloud computing and programming.",
+    "subtitle": "Blog by Max Ivanov, Software Engineer / Cloud Architect. I write about Azure, AWS, Serverless, DevOps, fullstack TypeScript, peppered with thoughts on dev life.",
     "filename": "feed.xml",
     "path": "/feed/feed.xml",
     "id": "https://www.maxivanov.io"
