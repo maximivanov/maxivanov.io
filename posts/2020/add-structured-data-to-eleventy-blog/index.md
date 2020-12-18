@@ -4,6 +4,7 @@ description: Add structured data (JSON-LD) to enable rich snippets in Google sea
 date: 2020-12-17
 tags:
   - Eleventy
+  - Static Site Generator
   - Structured Data
   - SEO
 ---
