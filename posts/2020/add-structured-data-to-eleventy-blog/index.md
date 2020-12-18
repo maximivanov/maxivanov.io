@@ -183,4 +183,6 @@ Now check the page source in a browser, you should see the structured data:
 <link rel="stylesheet" href="/css/index.css" />{% endraw %}
 ```
 
+After deploy, validate your pages with [Rich Results Test](https://search.google.com/test/rich-results) tool.
+
 Full code is in [Github repo](https://github.com/maximivanov/eleventy-structured-data-example).
