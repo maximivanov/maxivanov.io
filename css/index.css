@@ -10,6 +10,7 @@
   --white: #fff;
   --lavender: #9f90cf;
   --mauve: #e9d8e1;
+  --green: #dcf3de;
   --max-width-mobile: 768px;
   --max-width-desktop: 1600px;
   font-size: 16px;
@@ -89,6 +90,39 @@ pre[class*='language-'] {
 .token.selector .token.class,
 .token.selector .token.id {
   color: var(--red);
+}
+
+/* Code highlight */
+
+.highlight-line {
+  display: block;
+  padding: 0.125em 1em;
+  text-decoration: none; /* override del, ins, mark defaults */
+  color: inherit; /* override del, ins, mark defaults */
+}
+
+/* allow highlighting empty lines */
+.highlight-line:empty:before {
+  content: ' ';
+}
+/* avoid double line breaks when using display: block; */
+.highlight-line + br {
+  display: none;
+}
+
+.highlight-line-isdir {
+  color: #b0b0b0;
+  background-color: #222;
+}
+.highlight-line-active {
+  /* background-color: #444;
+  background-color: hsla(0, 0%, 27%, 0.8); */
+}
+.highlight-line-add {
+  background-color: var(--green);
+}
+.highlight-line-remove {
+  background-color: #902f2f;
 }
 
 /* Utils */
