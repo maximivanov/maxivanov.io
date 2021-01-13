@@ -16,7 +16,7 @@ API Management was a natural choice in the Azure ecosystem as it supports quota 
 APIM instance was configured to make sure clients meet the quota requirements before requests are forwarded to the function app.
 But the function app was still open to the Internet and anyone could make requests to it if they knew its HTTP endpoint.
 
-How do we prevent access to a function app from unauthorized sources and restrict it to an API Management instance?
+How do we prevent access to a Function app (or to an App Service app) from unauthorized sources and restrict it to an API Management instance?
 How do we define it as Infrastructure as Code with Terraform?
 
 After some research and experimentation I've got a working solution using Azure Active Directory authentication.
