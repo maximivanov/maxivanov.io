@@ -8,7 +8,8 @@
     "watch": "eleventy --watch",
     "serve": "eleventy --serve",
     "start": "eleventy --serve",
-    "debug": "DEBUG=* eleventy"
+    "debug": "DEBUG=* eleventy",
+    "publish-to-devto": "node ./scripts/publish-to-devto.js"
   },
   "author": "",
   "license": "ISC",
@@ -17,9 +18,13 @@
     "@11ty/eleventy-plugin-rss": "^1.0.9",
     "@11ty/eleventy-plugin-syntaxhighlight": "^3.0.4",
     "@quasibit/eleventy-plugin-schema": "^1.0.0",
+    "dotenv": "^8.2.0",
     "eleventy-plugin-reading-time": "0.0.1",
+    "gray-matter": "^4.0.2",
     "luxon": "^1.25.0",
     "markdown-it": "^12.0.3",
-    "markdown-it-anchor": "^6.0.1"
+    "markdown-it-anchor": "^6.0.1",
+    "node-fetch": "^2.6.1",
+    "replace": "^1.2.0"
   }
 }

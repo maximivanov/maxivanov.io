@@ -248,7 +248,8 @@ WWW-Authenticate: Bearer realm="adauthfaapim-dev-function-app.azurewebsites.net"
 Date: Sun, 10 Jan 2021 18:57:07 GMT
 Content-Length: 0
 
-$ curl -D - https://adauthfaapim-dev-api-management.azure-api.net/hello-world?name=apimHTTP/1.1 401 Unauthorized
+$ curl -D - https://adauthfaapim-dev-api-management.azure-api.net/hello-world?name=apim
+HTTP/1.1 401 Unauthorized
 Content-Length: 0
 WWW-Authenticate: Bearer realm="adauthfaapim-dev-function-app.azurewebsites.net" authorization_uri="https://login.microsoftonline.com/bb19fab2-.../oauth2/v2.0/authorize" resource_id="67ff3941-3536-4feb-b69d-e179a06ce195"
 Date: Sun, 10 Jan 2021 18:57:43 GMT
