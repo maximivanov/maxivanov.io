@@ -99,7 +99,7 @@ Hello, func-app. This HTTP triggered function executed successfully.
 
 Here's the diagram for our setup so far.
 
-![Unprotected Azure Functions App behind APIM](/posts/2021/restrict-azure-functions-to-api-management-with-terraform/unprotected-setup.webp)
+![Unprotected Azure Functions App behind APIM](/posts/2021/01/restrict-azure-functions-to-api-management-with-terraform/unprotected-setup.webp)
 
 ## Protected setup: overview
 
@@ -111,7 +111,7 @@ For this, we need to enable an **AAD Managed Identity** on the APIM.
 
 Here's the updated diagram.
 
-![Protected Azure Functions App behind APIM, overview](/posts/2021/restrict-azure-functions-to-api-management-with-terraform/protected-overview.webp)
+![Protected Azure Functions App behind APIM, overview](/posts/2021/01/restrict-azure-functions-to-api-management-with-terraform/protected-overview.webp)
 
 ## Related AAD concepts 101
 
@@ -185,7 +185,7 @@ In APIM, AAD token is obtained with a special <authentication-managed-identity> 
 
 Here's the updated diagram of the configuration.
 
-![Protected Azure Functions App behind APIM, details](/posts/2021/restrict-azure-functions-to-api-management-with-terraform/protected-detailed.webp)
+![Protected Azure Functions App behind APIM, details](/posts/2021/01/restrict-azure-functions-to-api-management-with-terraform/protected-detailed.webp)
 
 ## Terraform implementation
 
