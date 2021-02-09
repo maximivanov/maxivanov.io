@@ -2,6 +2,7 @@
 title: Make GraphQL requests from command line with curl
 description: Example curl requests to make GraphQL queries and mutations.
 date: 2020-11-26
+updateDate: 2021-02-09
 tags:
   - GraphQL
   - curl
@@ -13,7 +14,7 @@ Do you know and use all of the best-for-the-job tools available to us developers
 
 But if I come across some useful tool or technique I'll try to add it to my toolbelt. If you mostly work with Postman and GraphQL Playground and use terminal mainly to run `npm install`, you may want to know a bit about curl, command line tool for making http requests.
 
-![curl-graphql-query](/posts/2020/make-graphql-requests-with-curl/curl-graphql-query.png)
+![curl-graphql-query](/posts/2020/make-graphql-requests-with-curl/curl-graphql-query.webp)
 
 ## GraphQL, curl... what, why?
 
@@ -59,15 +60,14 @@ curl 'https://countries.trevorblades.com/' \
   }'
 ```
 
-### Make a mutation request:
+### Make a mutation request
 
 ```bash
 curl 'https://graphql-api-url' \
   -X POST \
   -H 'content-type: application/json' \
   --data '{
-    "variables":{"name":"John Doe"},
-    "query":"mutation ($name: String!) { createUser(name: $name) }"
+    "query":"mutation { createUser(name: \"John Doe\") }"
   }'
 ```
 
