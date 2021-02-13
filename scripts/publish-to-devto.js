@@ -32,7 +32,7 @@ function getPayload(file) {
             main_image: file.data.image ? `${siteUrl}${file.data.image}` : undefined,
             canonical_url: `${siteUrl}/${file.path.split('/').slice(-2, -1)[0]}`,
             description: file.data.description,
-            tags: file.data.tags.slice(0, 4).map(tag => tag.toLowerCase().replace(' ', '')),
+            tags: file.data.tags.slice(0, 4).map(tag => tag.toLowerCase().replace(/[^a-z0-9]/i, '')),
         }
     }
 }
@@ -46,6 +46,9 @@ async function publish(payload) {
     });
     
     const json = await response.json();
+    if (json.error) {
+        throw new Error(`API returned an error: ${json.error}`)
+    }
 
     return json
 }
