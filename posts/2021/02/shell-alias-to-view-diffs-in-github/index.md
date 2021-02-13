@@ -1,7 +1,7 @@
 ---
 title: Shell alias to view diffs in Github
 description: Quickly open a page in Github to compare branches and commits.
-date: 2021-01-29
+date: 2021-02-05
 tags:
   - Git
   - Github
