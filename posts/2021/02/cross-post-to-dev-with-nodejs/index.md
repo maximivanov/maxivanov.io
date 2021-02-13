@@ -25,6 +25,8 @@ Workflow now looks like this:
 - Publish to my personal blog
 - Run `npm run <path-to-md-file>` → follow the draft link to review → *Publish*
 
+![Cross-post to DEV.to with Node.js script](/posts/2021/02/cross-post-to-dev-with-nodejs/cross-post-npm-script.webp)
+
 If it sounds useful, below is a (beginner-friendly) guide of how to add such script to your own blog.
 
 ## Create a DEV API key
@@ -106,8 +108,8 @@ function getPayload(file) {
             // generate the canonical url (file name minus .md in my case)
             canonical_url: `${siteUrl}/${file.path.split('/').slice(-2, -1)[0]}`,
             description: file.data.description,
-            // DEV allows only 4 tags and they cannot have whitespace in them
-            tags: file.data.tags.slice(0, 4).map(tag => tag.toLowerCase().replace(' ', '')),
+            // DEV allows only 4 tags and they must be alphanumeric
+            tags: file.data.tags.slice(0, 4).map(tag => tag.toLowerCase().replace(/[^a-z0-9]/i, '')),
         }
     }
 }
@@ -127,6 +129,9 @@ async function publish(payload) {
     });
     
     const json = await response.json();
+    if (json.error) {
+        throw new Error(`API returned an error: ${json.error}`)
+    }
 
     return json
 }
