@@ -26,7 +26,7 @@ function getPayload(file) {
     return {
         article: {
             title: file.data.title.trim(),
-            body_markdown: file.content.trim().replace(/\]\(\/posts\//gm, `](${siteUrl}/posts/`),
+            body_markdown: getBody(file),
             published: autoPublish,
             series: undefined,
             main_image: file.data.image ? `${siteUrl}${file.data.image}` : undefined,
@@ -37,6 +37,12 @@ function getPayload(file) {
     }
 }
 
+function getBody(file) {
+    const ending = '*If you like this type of content you can [follow me](https://twitter.com/max_v_i) on Twitter for the latest updates.*'
+    const body = file.content.trim().replace(/\]\(\/posts\//gm, `](${siteUrl}/posts/`)
+    
+    return `${body}\n\n${ending}`
+}
 
 async function publish(payload) {
     const response = await fetch(apiUrl, {
