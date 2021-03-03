@@ -1,5 +1,5 @@
 ---
-title: "HTTP Strict Transport Security (HSTS)"
+title: "Ultimate guide to HTTP Strict Transport Security (HSTS)"
 image: /posts/2021/03/http-strict-transport-security/thumb.png
 image_dev: /posts/2021/03/http-strict-transport-security/thumb-dev.png
 description: What is HSTS policy and how it helps to prevent man-in-the-middle attacks
