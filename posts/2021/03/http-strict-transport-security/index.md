@@ -133,13 +133,13 @@ mitmproxy --set ssl_verify_upstream_trusted_ca=/var/mkcert/rootCA.pem -s sslstri
 
 9\. Visit http://localhost in the browser and click through the user flow entering your login and password (can be anything).
 
-![mitmproxy requests](/posts/2021/02/http-strict-transport-security/mitmproxy-requests.webp)
+![mitmproxy requests](/posts/2021/03/http-strict-transport-security/mitmproxy-requests.webp)
 
 You can see the requests made by the browser in `mitmproxy`:
 
 If you expand the `POST` request, you will see the credentials were intercepted:
 
-![mitmproxy credentials intercepted](/posts/2021/02/http-strict-transport-security/mitmproxy-credentials-intercepted.webp)
+![mitmproxy credentials intercepted](/posts/2021/03/http-strict-transport-security/mitmproxy-credentials-intercepted.webp)
 
 ## Solution: HSTS
 
@@ -244,7 +244,7 @@ app.use(function(req, res, next) {
 
 If you try to access the site with the same mitmproxy setup after HSTS was implemented you will see something similar:
 
-![hsts warning firefox](/posts/2021/02/http-strict-transport-security/hsts-warning-firefox.webp)
+![hsts warning firefox](/posts/2021/03/http-strict-transport-security/hsts-warning-firefox.webp)
 
 Implement in Azure Functions:
 
