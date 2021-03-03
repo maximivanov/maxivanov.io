@@ -29,7 +29,7 @@ function getPayload(file) {
             body_markdown: getBody(file),
             published: autoPublish,
             series: undefined,
-            main_image: file.data.image ? `${siteUrl}${file.data.image}` : undefined,
+            main_image: file.data.image_dev ? `${siteUrl}${file.data.image_dev}` : undefined,
             canonical_url: `${siteUrl}/${file.path.split('/').slice(-2, -1)[0]}`,
             description: file.data.description,
             tags: file.data.tags.slice(0, 4).map(tag => tag.toLowerCase().replace(/[^a-z0-9]/i, '')),
