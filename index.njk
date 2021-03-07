@@ -4,7 +4,7 @@ layout: layouts/base.njk
 <div class="bg--2">
   <div class="layout-width-limiter vertical-spacer-top layout-row">
     <div class="layout-col-1"></div>
-    <div class="layout-col-2">
+    <div class="layout-col-2 font-regular">
       <p>Personal blog by Max Ivanov, Software Engineer / Cloud Architect.</p>
       <br/>
       <p>I write about Azure, AWS, Serverless, DevOps, fullstack TypeScript, peppered with thoughts on dev life.</p>
@@ -17,15 +17,7 @@ layout: layouts/base.njk
 {% endset %}
 {% include "page-header.njk" %}
 
-<div class="layout-width-limiter layout-row">
-  <div class="layout-col-1"></div>
-  <div class="layout-col-2">
-    {% for post in collections.posts | reverse | head(3) %}
-      <div class="post-row-sm">
-        <time class="posts__post-row-date" datetime="{{ post.date | htmlDateString }}">{{ post.date | monthAndDay }}</time>
-        <a href="{{ post.url | url }}" class="posts__post-row-title">{% if post.data.title %}{{ post.data.title }}{% else %}<code>{{ post.url }}</code>{% endif %}</a>
-        <p class="posts__post-row-description">{{ post.data.description }}</p>
-      </div>
-    {% endfor %}
-  </div>
+<div class="layout-width-limiter">
+    {% set posts = collections.posts | reverse | head(3) | reverse %}
+    {% include "post-list.njk" %}
 </div>

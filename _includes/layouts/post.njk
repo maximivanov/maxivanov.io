@@ -14,9 +14,11 @@ eleventyComputed:
     {# <p class="post-page-description">{{ description }}</p> #}
     <p class="post-page-reading-time">Reading time: <span>{{ content | readingTime({speed: 200}) }}</span></p>
     <p class="post-page-date">
-      <time datetime="{{ date | htmlDateString }}">{{ date | readableDate }}</time>
+      Last updated 
       {% if updateDate %}
-        (last updated <time datetime="{{ updateDate | htmlDateString }}">{{ updateDate | readableDate }}</time>)
+        <time datetime="{{ updateDate | htmlDateString }}">{{ updateDate | readableDate }}</time>
+      {% else %}
+        <time datetime="{{ date | htmlDateString }}">{{ date | readableDate }}</time>
       {% endif %}
     </p>
     <p class="post-page-divider post-page-divider--start">_,.-'~'-.,__,.-'~'-.,__,.-'~'-.,__,.-'~'-.,__,.-'~'-.,_</p>
