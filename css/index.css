@@ -3,6 +3,7 @@
 
 :root {
   --red: #b1365b;
+  --light-red: #da7391;
   --lightgray: #f7f7f7;
   --lightgray-outline: #efefef;
   --darkgray: #111;
@@ -80,18 +81,6 @@ code[class*='language-'] {
   font-size: 0.85rem;
 }
 
-code,
-:not(pre) > code[class*='language-'],
-pre[class*='language-'] {
-  background-color: var(--lightgray-outline);
-}
-
-.token.function,
-.token.selector .token.class,
-.token.selector .token.id {
-  color: var(--red);
-}
-
 /* Code highlight */
 
 .highlight-line {
@@ -113,10 +102,6 @@ pre[class*='language-'] {
 .highlight-line-isdir {
   color: #b0b0b0;
   background-color: #222;
-}
-.highlight-line-active {
-  /* background-color: #444;
-  background-color: hsla(0, 0%, 27%, 0.8); */
 }
 .highlight-line-add {
   background-color: var(--green);
