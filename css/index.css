@@ -4,9 +4,11 @@
 :root {
   --red: #b1365b;
   --light-red: #da7391;
+  --code-red: #76d9e6;
   --lightgray: #f7f7f7;
   --lightgray-outline: #efefef;
   --darkgray: #111;
+  --darkishgray: #2a2a2a;
   --blue: #0461b1;
   --white: #fff;
   --lavender: #9f90cf;
@@ -69,7 +71,8 @@ h3 {
 
 :not(pre) > code {
   padding: 0.25rem;
-  font-size: 0.9rem;
+  /* font-size: 0.9rem; */
+  background-color: var(--lightgray-outline);
 }
 
 pre[class*='language-'] {
