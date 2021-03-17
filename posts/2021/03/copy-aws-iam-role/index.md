@@ -4,6 +4,7 @@ image: /posts/2021/03/copy-aws-iam-role/thumb.png
 image_dev: /posts/2021/03/copy-aws-iam-role/thumb-dev.png
 description: Avoid the chore of copying policy JSON manually.
 date: 2021-03-15
+updateDate: 2021-03-17
 tags:
   - AWS
   - AWS IAM
@@ -20,6 +21,37 @@ There's no `aws iam copy-role` command though... So your only option is to dupli
 Here's an implementation of such a script in Node.js. It will make a copy of the role with its trust relationship policy, inline policies and managed polcies (both AWS- and customer-managed).
 
 You can find the code in the [repository](https://github.com/maximivanov/aws-iam-copy-role).
+
+## Why Node.js? Shouldn't we use AWS CDK nowadays?
+
+Node.js was my choice because I'm comfortable with the language. The util could very well be written in any language as long as you can access AWS SDK.
+
+Now, AWS is pushing CDK as the tool to deploy infrastructure in the cloud. Can we use it to make a copy of an IAM role?
+
+I'm not an expert in CDK, but from a quick experiment I ran copying a role is not very convenient with CDK.
+
+```js
+import * as cdk from '@aws-cdk/core';
+import * as iam from '@aws-cdk/aws-iam';
+
+const sourceRoleArn = 'arn:aws:iam::115863491284:role/copy-role-poc'
+
+export class CdkStack extends cdk.Stack {
+  constructor(scope: cdk.Construct, id: string, props?: cdk.StackProps) {
+    super(scope, id, props);
+
+    const sourceRole = <iam.Role>iam.Role.fromRoleArn(this, 'SourceRole', sourceRoleArn, {
+      mutable: false,
+    });
+
+    // const targetRole = new iam.Role(this, 'TargetRole', {
+    //   // assumedBy: sourceRole.??
+    // })
+  }
+}
+```
+
+While it's very easy to **create new** resources in CDK, I didn't find a way to extract details about an existing role: trust relationship policy, inline and managed policies. There are simply no such properties in the [`Role` construct](https://docs.aws.amazon.com/cdk/api/latest/docs/@aws-cdk_aws-iam.Role.html). If you know a way to fetch that information from a role, please let me know!
 
 ## Prerequisites
 
