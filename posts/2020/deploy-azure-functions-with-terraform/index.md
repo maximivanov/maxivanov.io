@@ -2,7 +2,7 @@
 title: Deploy Azure Functions with Terraform
 description: A practical, step by step guide on how to deploy an Azure Function with Terraform.
 date: 2020-11-30
-updateDate: 2020-12-16
+updateDate: 2021-03-27
 image: /posts/2020/deploy-azure-functions-with-terraform/deploy-azure-functions-with-terraform.png
 tags:
   - Azure
@@ -31,7 +31,7 @@ You may find this guide useful if you are:
 
 Since the focus of this post is on Terraform, we will create a basic hello-world function in TypeScript to serve as our deployment unit but otherwise it can be in any language.
 
-We will provision Azure resources required to host and monitor the function in the Linux-based Consumption (serverless) environment with Terraform, one resource at a time.
+We will provision Azure resources required to host and monitor the function in the Linux-based Consumption (serverless) environment with Terraform, one resource at a time. There will be comments for how to change the config to adapt for Windows deployment.
 
 Finally we will deploy the function code and execute it in the cloud.
 
@@ -48,6 +48,8 @@ I won't go over the installation of the tools since the process for of them is w
 - [Azure CLI](https://docs.microsoft.com/en-us/cli/azure/install-azure-cli) 2.4+. You must be [logged in](https://docs.microsoft.com/en-us/cli/azure/authenticate-azure-cli#sign-in-interactively) to the CLI.
 - [Terraform](https://www.terraform.io/downloads.html) to manage infrastructure in the cloud.
 - Azure account. You can [start for free](https://azure.microsoft.com/en-us/free/).
+
+There's a VS Code dev container definition included in the repo for a quick start. It has all of the dependencies so you don't have to install them on your local machine.
 
 ## 4. Function to be deployed
 
@@ -84,12 +86,12 @@ Hello, Terraform. This HTTP triggered function executed successfully.
 Following the standard naming convention in Terraform, we will define our infrastructure module within 4 files:
 
 ```bash
-find .terraform
-.terraform
-.terraform/outputs.tf
-.terraform/main.tf
-.terraform/terraform.tfvars
-.terraform/variables.tf
+❯ tree terraform
+terraform
+├── main.tf
+├── outputs.tf
+├── terraform.tfvars
+└── variables.tf
 ```
 
 `main.tf` is where the cloud resources and their configuration will be defined.
@@ -102,7 +104,7 @@ find .terraform
 To make our module reusable, we can define a list of variables (you can think about them as of input arguments) it supports. Later we will reference them within the module. Each variable declaration consists of a name at minimum, but also can specify variable type, description and default value. Let's add 3 variables:
 
 ```hcl
-# .terraform/variables.tf
+# terraform/variables.tf
 
 variable "project" {
   type = string
@@ -125,7 +127,7 @@ variable "location" {
 Terraform will automatically load all `.tf` and `.tfvars` files in the module's directory. Latter is to specify values for module variables defined in the previous step. Alternatively you can pass them as command line arguments or with environment variables.
 
 ```hcl
-# .terraform/terraform.tfvars
+# terraform/terraform.tfvars
 
 project = "azuretf"
 environment = "dev"
@@ -137,7 +139,7 @@ location = "East US"
 You deploy Terraform module to a _provider_. Obvious provider examples are cloud providers like AWS/GCP/Azure but there are many more. You can manage resources and configuration in Digital Ocean, Heroku, Github and Netlfy. See the full list of providers in the [Terraform Registry](https://registry.terraform.io/browse/providers).
 
 ```hcl
-# .terraform/main.tf
+# terraform/main.tf
 
 terraform {
   required_providers {
@@ -173,7 +175,7 @@ resource "[terraform resource type]" "[logical resource name]" {
 You really want to stick to some naming convention, both in Terraform resource names (`resource_group` below) and with cloud resource names (`${var.project}-${var.environment}-resource-group` below). It's so much easier when you can easily and consistently come up with a resource name without guessing or referencing the sources.
 
 ```hcl
-# .terraform/main.tf
+# terraform/main.tf
 
 ...
 
@@ -188,7 +190,7 @@ resource "azurerm_resource_group" "resource_group" {
 At this point we have everything we need to deploy the resource group defined in `main.tf` to Azure. Let's do that.
 
 First, initialize Terraform so it downloads required provider dependencies. This has to be done once.
-All `terraform ...` commands must be executed in the `.terraform` directory, where the module sources are.
+All `terraform ...` commands must be executed in the `terraform` directory, where the module sources are.
 
 ```bash
 terraform init
@@ -217,14 +219,14 @@ terraform apply
 
 Storage account is another resource required for our function app. It will host the file system of the container running our function app. This is where the code will be uploaded as well as where logs and any temporary files will be written to.
 
-Couple notes:
+Notes:
 
 - Storage account naming convention is an exception to the rule since Azure doesn't allow `-` in the name
 - We reference the resource group created in the previous step. This also signals to Terraform in which order to create resources so that dependencies are properly resolved.
 - `LRS` stands for "Locally redundant storage" where your data is replicated within a single region. A more advanced setting here is `ZRS` which is "Zone-redundant storage".
 
 ```hcl
-# .terraform/main.tf
+# terraform/main.tf
 
 ...
 
@@ -244,7 +246,7 @@ You can review and deploy the change right away or you can add all resources fro
 Application Insights is a component of Azure Monitor which allows you to collect metrics and logs from your function app.
 
 ```hcl
-# .terraform/main.tf
+# terraform/main.tf
 
 ...
 
@@ -266,10 +268,10 @@ There are 3 plans available:
 - **Premium Plan.** You reserve a number of always-ready instances which run no matter if there are events or not. As load grows, new instances are added automatically.
 - **Dedicated (App Service) Plan.** FAs will run on VMs managed by you. Doesn't scale automatically based on events.
 
-Naming is a bit unfortunate here since the 3rd option has "App Service Plan" in it too. We want to go serverless thus we choose a Consumption App Service Plan. `sku` section below sets it.
+Naming is a bit unfortunate here since the 3rd option has "App Service Plan" in it too. We want to go serverless thus we choose a **Linux Consumption** App Service Plan. `sku` section below sets it.
 
 ```hcl
-# .terraform/main.tf
+# terraform/main.tf
 
 ...
 
@@ -286,17 +288,63 @@ resource "azurerm_app_service_plan" "app_service_plan" {
 }
 ```
 
+Here's how the app service configuration will change for different environments (something I found out through trial and error):
+
+**Linux Premium**
+
+```hcl
+resource "azurerm_app_service_plan" "app_service_plan" {
+  ...
+  kind     = "elastic"
+  reserved = true
+  sku {
+    tier = "ElasticPremium"
+    size = "EP1"
+  }
+}
+```
+
+**Windows Consumption**
+
+```hcl
+resource "azurerm_app_service_plan" "app_service_plan" {
+  ...
+  kind     = "FunctionApp"
+  reserved = false
+  sku {
+    tier = "Dynamic"
+    size = "Y1"
+  }
+}
+```
+
+**Windows Premium**
+
+```hcl
+resource "azurerm_app_service_plan" "app_service_plan" {
+  ...
+  kind     = "elastic"
+  reserved = false
+  sku {
+    tier = "ElasticPremium"
+    size = "EP1"
+  }
+}
+```
+
+
 ### 5.9. Create Function App
 
-The final resource we need to create is the function app itself. It references resources created earlier: App Service Plan, Application Insights instance and storage account. Version is set to 3, which is the latest version of Azure Functions at the moment.
+The final resource we need to create is the function app itself. It references resources created earlier: App Service Plan, Application Insights instance and storage account. Version is set to `3`, which is the latest version of Azure Functions at the moment.
 
 `app_settings` is a key-value block with configuration options for all of the functions in the Function App. If you need to pass an environment variable to your code, add it here.
-Setting `WEBSITE_RUN_FROM_PACKAGE` to an empty value and ignoring changes in the lifecycle block is there to prevent Terraform reporting on configuration drift after we deploy the function code.
+
+If you publish code with other tools (e.g. Azure Functions Core Tools, or VS Code, or use ZIP deploy directly), they may change the value of `WEBSITE_RUN_FROM_PACKAGE`. To prevent Terraform from reporting about [configuration drift](/ignore-azure-functions-application-settings-change-in-terraform/) in these cases, we set the app setting to an empty value and ignore changes in the lifecycle block. Note: alternatively you can [deploy the function code with Terraform](/publish-azure-functions-code-with-terraform/) too - there won't be this issue then.
 
 For CORS configuration, check the [cors parameter](https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/function_app#cors) in the resource documentation.
 
 ```hcl
-# .terraform/main.tf
+# terraform/main.tf
 
 ...
 
@@ -306,10 +354,15 @@ resource "azurerm_function_app" "function_app" {
   location                   = var.location
   app_service_plan_id        = azurerm_app_service_plan.app_service_plan.id
   app_settings = {
-    "WEBSITE_RUN_FROM_PACKAGE"       = "",
+    "WEBSITE_RUN_FROM_PACKAGE" = "",
+    "FUNCTIONS_WORKER_RUNTIME" = "node",
     "APPINSIGHTS_INSTRUMENTATIONKEY" = azurerm_application_insights.application_insights.instrumentation_key,
   }
   os_type = "linux"
+  site_config {
+    linux_fx_version          = "node|14"
+    use_32_bit_worker_process = false
+  }
   storage_account_name       = azurerm_storage_account.storage_account.name
   storage_account_access_key = azurerm_storage_account.storage_account.primary_access_key
   version                    = "~3"
@@ -322,6 +375,26 @@ resource "azurerm_function_app" "function_app" {
 }
 ```
 
+If you are to deploy a Windows function app, make these changes:
+
+```hcl
+resource "azurerm_function_app" "function_app" {
+  ...
+  app_settings = {
+    ...
+    # add this
+    "WEBSITE_NODE_DEFAULT_VERSION": "~14"
+  }
+  # remove this
+  # os_type = "linux"
+  site_config {
+    ...
+    # remove this
+    # linux_fx_version = "node|14"
+  }
+}
+```
+
 ### 5.10. Add module output
 
 We have all the components defined in Terraform now. Once we deploy the module we want to know the hostname of our function app to make a test call. We also need the Azure name of the function app for the next step where we deploy the function code.
@@ -329,7 +402,7 @@ We have all the components defined in Terraform now. Once we deploy the module w
 Add output definitions:
 
 ```hcl
-# .terraform/outputs.tf
+# terraform/outputs.tf
 
 output "function_app_name" {
   value = azurerm_function_app.function_app.name
@@ -356,11 +429,13 @@ Open the function app hostname in the browser. You should see the success page:
 
 We have a place in the cloud where the code will run, let's upload our code there.
 
+There are multiple ways to deploy code to Azure Functions, below we'll use Azure Functions Core Tools. Alternatively, you can [deploy the code with Terraform](/publish-azure-functions-code-with-terraform/) to not introduce additional dependencies.
+
 By default Azure Functions Core Tools will upload full content of the current folder minus files matching patterns in `.funcignore`.
-Make sure to add `.terraform/*` to that file, otherwise you will publish multi-megabyte terraform folder to your function app:
+Make sure to add `terraform/*` to that file, otherwise you will publish multi-megabyte terraform folder to your function app:
 
 ```bash
-printf "\n.terraform/*" >> .funcignore
+printf "\nterraform/*" >> .funcignore
 ```
 
 You may also want to exclude dev dependencies from your `node_modules` before code upload. There's a `npm run build:production` command which will prune non-production modules. It's supposed to be executed in the CI/CD environment. If you run it locally, remember to re-run `npm install` to restore your dev packages afterwards.
