@@ -2,7 +2,7 @@
 title: "Publish Azure Functions code with Terraform"
 image: /posts/2021/03/publish-azure-functions-code-with-terraform/thumb.png
 image_dev: /posts/2021/03/publish-azure-functions-code-with-terraform/thumb-dev.png
-description: Single tool to manage both infrastructure and code pushes
+description: Single tool to manage both infrastructure and code pushes.
 date: 2021-03-27
 tags:
   - Azure
