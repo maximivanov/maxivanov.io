@@ -1,7 +1,7 @@
 ---
 title: "AWS Cognito: Amplify vs amazon-cognito-identity-js vs AWS SDK"
-image: /posts/2021/03/publish-azure-functions-code-with-terraform/thumb.png
-image_dev: /posts/2021/03/publish-azure-functions-code-with-terraform/thumb-dev.png
+image: /posts/2021/04/aws-cognito-amplify-vs-amazon-cognito-identity-js-vs-aws-sdk/thumb.png
+image_dev: /posts/2021/04/aws-cognito-amplify-vs-amazon-cognito-identity-js-vs-aws-sdk/thumb-dev.png
 description: Which of the libraries to use when to integrate Cognito in JavaScript projects.
 date: 2021-04-03
 tags:
