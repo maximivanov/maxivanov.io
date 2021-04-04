@@ -38,6 +38,8 @@ All code examples use ES6 modules and are written with async/await for asynchron
 
 ![Cognito configuration](/posts/2021/04/aws-cognito-amplify-vs-amazon-cognito-identity-js-vs-aws-sdk/cognito-settings.webp)
 
+Full code examples can be found in the [post's repository](https://github.com/maximivanov/cognito-js-usage).
+
 ## Amplify
 
 Amplify is an umbrella project for a bunch of services, one of them is authentication (Cognito). 
